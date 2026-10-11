@@ -48,5 +48,19 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "navigation": {
+    "main": "Main navigation",
+    "footer": "Footer navigation",
+    "policies": "Policies",
+    "payment_methods": "Accepted payment methods",
+    "shop_all": "Shop all",
+    "account": "Account",
+    "cart_count": "Cart, {{ count }} items",
+    "menu": "Menu",
+    "view_all": "View all {{ title }}"
   }
 }

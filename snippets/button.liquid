@@ -1,0 +1,13 @@
+{% doc %}
+  Renders a navigation link using the shared NOVA button styles.
+  Empty labels or destinations produce no link.
+
+  @param {string} label - Visible link label
+  @param {string} url - Destination URL
+  @param {string} [style] - primary or secondary
+{% enddoc %}
+{% if label != blank and url != blank %}
+  <a class="nova-button nova-button--{{ style | default: 'primary' | escape }}" href="{{ url | escape }}">
+    {{ label | escape }}
+  </a>
+{% endif %}

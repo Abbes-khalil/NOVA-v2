@@ -15,3 +15,11 @@ node_modules/
 ## Release files
 release
 *.zip
+
+# Local development
+.npm-cache/
+.env
+.env.*
+!.env.example
+shopify.theme.toml
+reports/

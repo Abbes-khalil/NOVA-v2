@@ -1,0 +1,56 @@
+.nova-announcement { background: var(--color-accent); color: var(--color-accent-foreground); text-align: center; font-size: .8125rem; font-weight: 600; overflow-wrap: anywhere; }
+.nova-announcement p, .nova-announcement a { display: block; padding: .75rem max(20px, var(--page-margin)); }
+.nova-announcement a { text-decoration: none; }
+.nova-announcement a:hover { text-decoration: underline; }
+.nova-header { display: block; min-width: 0; border-bottom: 1px solid currentColor; }
+.nova-header__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) auto; align-items: center; gap: 1rem; padding-block: 1.25rem; }
+.nova-header a { text-decoration: none; }
+.nova-header a:hover, .nova-header [aria-current="page"], .nova-nav__active { text-decoration: underline; text-underline-offset: .3em; }
+.nova-header__brand { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -.06em; overflow-wrap: anywhere; line-height: 1; padding-block: .5rem; }
+.nova-header__logo { width: 180px; max-height: 80px; object-fit: contain; object-position: left center; }
+.nova-header__actions { display: flex; align-items: center; gap: .25rem; }
+.nova-header__action { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; gap: .25rem; }
+.nova-header__action svg { width: 22px; height: 22px; }
+.nova-header__count { font-size: .75rem; font-weight: 600; min-width: 1rem; }
+.nova-header__desktop { min-width: 0; position: relative; }
+.nova-nav__list { list-style: none; padding: 0; }
+.nova-header__desktop .nova-nav__list--1 { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1rem; }
+.nova-nav__list li { min-width: 0; }
+.nova-header nav a, .nova-header nav summary { display: flex; align-items: center; min-height: 44px; padding: .5rem .25rem; overflow-wrap: anywhere; }
+.nova-header summary { cursor: pointer; list-style: none; gap: .75rem; }
+.nova-header summary::-webkit-details-marker { display: none; }
+.nova-header summary::after { content: '+'; margin-inline-start: auto; font-size: 1.1rem; }
+.nova-header details[open] > summary::after { content: '−'; }
+.nova-nav__branch { position: relative; }
+.nova-nav__children { padding: .5rem 1rem; background: var(--color-background); }
+.nova-header__desktop .nova-nav__list--1 > li > details { position: static; }
+.nova-header__desktop .nova-nav__list--1 > li > details > .nova-nav__children { position: absolute; inset-inline-start: 0; top: 100%; z-index: 20; width: min(100%, 24rem); border: 1px solid currentColor; }
+.nova-header__mobile { display: none; }
+.nova-footer { min-width: 0; padding-block: var(--section-spacing) 1.5rem; border-top: 1px solid currentColor; }
+.nova-footer__top { display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.nova-footer__brand > a { display: inline-block; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; font-weight: 700; letter-spacing: -.06em; text-decoration: none; overflow-wrap: anywhere; }
+.nova-footer__brand .nova-richtext { margin-block-start: 1rem; max-width: 32ch; }
+.nova-footer__heading { font-size: .8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-block-end: .75rem; }
+.nova-footer__links, .nova-footer__links ul { list-style: none; padding: 0; }
+.nova-footer__links ul { padding-inline-start: 1rem; }
+.nova-footer__links a { display: inline-flex; align-items: center; min-height: 44px; padding-block: .5rem; text-decoration: none; overflow-wrap: anywhere; }
+.nova-footer a:hover, .nova-footer [aria-current="page"] { text-decoration: underline; }
+.nova-footer__bottom { margin-block-start: 3rem; padding-block-start: 1.5rem; border-top: 1px solid currentColor; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; font-size: .8125rem; }
+.nova-footer__bottom p { min-width: 0; overflow-wrap: anywhere; }
+.nova-footer__payments { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: 0; list-style: none; }
+.nova-footer__payments svg { width: 38px; height: 24px; }
+@media (max-width: 989px) {
+  .nova-header__inner { grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1rem; padding-block: .75rem; }
+  .nova-header__logo { width: 120px; max-height: 60px; }
+  .nova-header__desktop { display: none; }
+  .nova-header__mobile { display: block; grid-column: 1 / -1; border-top: 1px solid var(--color-surface); }
+  .nova-header__mobile > summary { display: flex; align-items: center; min-height: 44px; padding-block: .5rem; font-weight: 600; }
+  .nova-header__mobile > nav { padding-block: .5rem 1rem; }
+  .nova-nav__children { border-inline-start: 1px solid currentColor; margin-inline-start: .25rem; }
+  .nova-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nova-footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 479px) {
+  .nova-footer__top { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .nova-header__actions { gap: 0; }
+}

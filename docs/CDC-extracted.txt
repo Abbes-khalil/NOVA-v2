@@ -1,0 +1,248 @@
+PAGE 1
+NOVA • Cahier des charges • Projet personnel Shopify
+1
+NOVA
+Cahier des charges fonctionnel et technique
+Boutique Shopify Online Store 2.0
+Projet : thème e-commerce streetwear personnalisé   |   Version : 1.1   |   Date : octobre 2026
+Finalité : boutique de démonstration fonctionnelle et étude de cas crédible pour un profil de développeur
+Shopify sur Upwork.
+Positionnement
+Exigence
+Nature
+Projet personnel / démonstration, et non mission client réelle
+Stack
+Shopify, Liquid, HTML, CSS, JavaScript, Shopify CLI, Git/GitHub
+Périmètre
+Thème personnalisé, données Shopify, expérience d’achat, tests et documentation
+Livraison
+Démonstration accessible, dépôt de code, captures, vidéo et case study
+1. Contexte et objectifs
+NOVA est une marque fictive de mode urbaine. Le projet consiste à concevoir et développer un thème
+Shopify Online Store 2.0 à partir de Shopify Skeleton. Le contenu marchand est administré dans Shopify
+Admin ; les templates, sections, blocks et snippets assurent la présentation.
+• Offrir une expérience cohérente sur ordinateur et mobile.
+• Permettre au marchand de modifier les contenus dans Theme Editor sans changer le code.
+• Rendre le parcours collection → produit → panier → checkout testable.
+• Prouver des compétences transférables à des missions Shopify sur Upwork.
+2. Utilisateurs et rôles
+Acteur
+Besoins
+Visiteur
+Découvrir la marque, naviguer dans les collections, rechercher et filtrer.
+Acheteur
+Choisir une variante, vérifier la disponibilité, gérer le panier, accéder au checkout.
+Marchand
+Gérer produits, collections, prix, stocks, promotions et sections configurables.
+Développeur
+Maintenir le thème, tester, corriger et livrer via Git/GitHub.
+
+PAGE 2
+NOVA • Cahier des charges • Projet personnel Shopify
+2
+3. Périmètre fonctionnel
+Module
+Fonctionnalités attendues
+Priorité
+Accueil
+Announcement bar, header, hero, cartes collections, featured collection, hero
+promotionnel, footer.
+P0
+Collections
+Titre, description, image, compte produits, grille, tri, filtres, pagination, état
+vide.
+P0
+Fiche produit
+Galerie, titre, description, prix, compare-at, variantes, quantité, disponibilité,
+ajout panier.
+P0
+Panier
+Articles, variantes, quantités, suppression, sous-total, état vide, accès
+checkout.
+P0
+Recherche
+Résultats de recherche et état vide ; recherche prédictive en amélioration.
+P0 / P1
+Merchandising
+Promotions, badges, metafields et metaobjects pour contenu enrichi.
+P1
+Expérience
+Comptes clients natifs si activés, responsive, navigation clavier.
+P0
+Contenu
+marketing
+Newsletter, produits recommandés, blocs de réassurance.
+P1
+4. Catalogue initial et données
+Les prix ci-dessous sont des données de démonstration en dollars américains (USD), à ajuster dans
+Shopify Admin. Les promotions sont matérialisées par un prix de comparaison supérieur au prix de vente.
+Produit
+Prix
+Compare-at
+Oversized T-Shirt
+$49
+—
+Essential Hoodie
+$69
+$89
+Relaxed Cargo Pants
+$79
+$99
+Zip Jacket
+$109
+—
+Ribbed Tank
+$39
+$49
+Everyday Cap
+$35
+—
+Chaque produit doit posséder au minimum : titre, handle, description, image principale, type, prix, statut,
+disponibilité, SKU et variantes pertinentes. Collections cibles : New Arrivals, Sale, Accessories, Clothing et
+All Products. Les collections peuvent être manuelles ou automatiques.
+
+PAGE 3
+NOVA • Cahier des charges • Projet personnel Shopify
+3
+5. Règles métier et critères d’acceptation
+• La collection affichée dépend de l’URL et de l’objet contextuel collection ; aucun handle produit ou
+collection ne doit être codé en dur.
+• Le composant product-card est réutilisé sur l’accueil et dans les collections.
+• La sélection d’une variante doit utiliser son identifiant réel et actualiser prix, disponibilité et image si
+nécessaire.
+• Une variante indisponible ne peut pas être ajoutée au panier.
+• Le panier reflète correctement les quantités et les montants après chaque modification.
+• Le bouton de paiement redirige vers Shopify Checkout ; aucun système de paiement personnalisé n’est
+développé.
+• Les états vides (collection, recherche, panier) sont explicites et utilisables.
+6. Architecture technique
+Flux : Shopify Admin → objets Liquid / JSON templates → sections et blocks → snippets réutilisables →
+HTML/CSS/JavaScript → storefront → Cart API → Shopify Checkout.
+Conventions : architecture Online Store 2.0, paramètres dans schema, fichiers de traduction, styles
+globaux cohérents, JavaScript progressif et dépendances minimales. Les noms de fichiers doivent suivre
+la structure existante sans créer de composants en doublon.
+Responsabilités : Shopify gère les données marchandes, les comptes et le checkout ; le thème gère
+rendu, navigation et interactions côté navigateur.
+7. Exigences non fonctionnelles
+Domaine
+Exigence / objectif
+Performance
+Images responsives, lazy loading hors contenu prioritaire, CSS/JS sobres ; viser LCP ≤ 2,5 s,
+INP ≤ 200 ms et CLS ≤ 0,1 dans un environnement de mesure défini.
+Accessibilité
+Viser WCAG 2.2 AA : contrastes, focus visible, clavier, labels, alt et états accessibles.
+Responsive
+Contrôles et mises en page utilisables sur mobile, tablette et desktop.
+SEO
+Titres et descriptions pertinents, balisage sémantique, URLs propres et métadonnées
+Shopify.
+Qualité
+Shopify Theme Check, revue des diffs, absence d’erreurs bloquantes, tests de régression.
+Sécurité
+Aucun secret dans Git ; fonctions sensibles et paiements délégués à Shopify.
+
+PAGE 4
+NOVA • Cahier des charges • Projet personnel Shopify
+4
+8. Plan de réalisation — 12 sprints (0 à 11)
+Sprint
+Livrable
+0
+Initialisation : store, CLI, GitHub et thème Skeleton
+1
+Fondations : Liquid, templates, sections, settings
+2
+Global storefront : header, footer, navigation responsive
+3
+Homepage : hero, catégories, featured collection, cartes produit
+4
+Catalogue : collections, tri, filtres, pagination
+5
+Fiche produit : médias, variantes, disponibilité, add to cart
+6
+Panier : AJAX, mise à jour, suppression, totaux
+7
+Données enrichies : metafields et metaobjects
+8
+Recherche et expérience client
+9
+Parcours commerce : checkout, réductions et livraison (configuration/tests)
+10
+QA : accessibilité, SEO, performance, régressions
+11
+Livraison : README, documentation, vidéo, étude de cas et portfolio
+État : certaines fonctionnalités des sprints 0–4 ont été développées dans les échanges du projet ; leur
+complétude, leur intégration sur main et leurs tests doivent être vérifiés avant toute affirmation
+publique.
+9. Stratégie Git et assurance qualité
+Développer par branches de sprint (feature/homepage, feature/catalog, feature/product-page,
+feature/cart…), avec commits ciblés, revue et Pull Request vers main après validation. Vérifier les conflits
+avant chaque fusion.
+• Tests de parcours : collection → produit → variante → panier → checkout.
+• Tests des tris et filtres, y compris avec zéro résultat.
+• Tests mobile / desktop et navigation clavier.
+• Vérification de la correspondance image–produit et du prix en USD.
+• Contrôle du Theme Editor : modifier un paramètre doit mettre à jour le rendu.
+• Exécuter Shopify Theme Check depuis la racine réelle du thème.
+10. Livrables de fin de projet
+• Thème Shopify fonctionnel dans un environnement de démonstration.
+• Dépôt GitHub propre, README détaillé, instructions d’installation et de configuration.
+
+PAGE 5
+NOVA • Cahier des charges • Projet personnel Shopify
+5
+• Documentation de l’architecture et des composants réutilisables.
+• Jeu de données de démonstration, images produits et collections.
+• Rapport QA avec preuves de tests et limitations connues.
+• Captures desktop/mobile et courte vidéo du parcours utilisateur.
+• Étude de cas portfolio orientée problèmes, solutions et résultats vérifiés.
+11. Adaptation explicite au portfolio Upwork
+Un beau visuel ne suffit pas pour convaincre un client : la démonstration doit montrer des fonctionnalités
+e-commerce réelles, une personnalisation facile et un niveau de finition professionnel.
+Preuve à publier
+Ce qu’elle démontre
+Capture homepage desktop + mobile
+Identité visuelle, responsive et sections personnalisées
+Vidéo 60–120 s
+Parcours complet : collection, tri/filtre, variantes, panier
+Capture Theme Editor
+Autonomie du marchand et paramétrage des sections
+Extrait du dépôt / README
+Architecture Liquid, réutilisation, qualité et maintenance
+Résultats de tests
+Fiabilité, accessibilité, performances mesurées
+Titre de portfolio suggéré (anglais) : Custom Shopify Storefront Theme | Liquid, Product Pages & AJAX
+Cart
+Description courte (anglais) : “Built NOVA, a demo streetwear storefront using Shopify Online Store 2.0,
+Liquid, CSS, and JavaScript. Developed configurable homepage sections, dynamic collections, reusable
+product cards, and a responsive shopping experience. Product variants, cart interactions, and
+performance checks are documented as completed and verified.”
+Important : adapter cette description aux fonctionnalités réellement terminées. Indiquer clairement
+“personal/demo project”, ne pas présenter NOVA comme une commande client, ne pas inventer des
+ventes, des taux de conversion ou des scores Lighthouse.
+
+PAGE 6
+NOVA • Cahier des charges • Projet personnel Shopify
+6
+12. Conditions pour être prêt à publier
+Contrôle de publication
+Statut requis
+Fiches produit et variantes fonctionnelles
+Obligatoire
+Ajout panier et modification quantités
+Obligatoire
+Checkout de test accessible selon configuration
+Obligatoire
+Aucune image manquante ou contenu de démonstration incohérent
+Obligatoire
+Navigation et grilles mobile vérifiées
+Obligatoire
+Captures, vidéo, README et description honnête
+Obligatoire
+Rapport Theme Check et liste de limites connues
+Fortement recommandé
+Recherche prédictive, metaobjects, optimisations avancées
+Bonus différenciant
+Verdict : NOVA est un excellent sujet de portfolio pour proposer des services de développement de
+thèmes Shopify, mais la publication comme “boutique complète” doit attendre la validation du parcours
+produit–panier–checkout. À ce stade, il faut distinguer les éléments déjà réalisés de ceux prévus.

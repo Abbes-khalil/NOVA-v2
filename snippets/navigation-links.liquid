@@ -1,0 +1,20 @@
+{% comment %}Shared Shopify navigation, including all three supported menu levels.{% endcomment %}
+{% assign depth = depth | default: 1 %}
+<ul class="nova-nav__list nova-nav__list--{{ depth }}" role="list">
+  {% for link in links %}
+    <li>
+      {% if link.links != blank %}
+        <details class="nova-nav__branch">
+          <summary{% if link.child_active or link.active %} class="nova-nav__active"{% endif %}>{{ link.title | escape }}</summary>
+          <div class="nova-nav__children">
+            <a href="{{ link.url | escape }}"{% if link.current %} aria-current="page"{% endif %}>{{ 'navigation.view_all' | t: title: link.title | escape }}</a>
+            {% assign next_depth = depth | plus: 1 %}
+            {% render 'navigation-links', links: link.links, depth: next_depth %}
+          </div>
+        </details>
+      {% else %}
+        <a href="{{ link.url | escape }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

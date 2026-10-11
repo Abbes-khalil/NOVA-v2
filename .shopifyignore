@@ -11,3 +11,15 @@
 #
 # Ignore templates and sections with a regular expression:
 #   /(templates|sections)/.*\.json/
+
+# Local tooling and documentation
+node_modules/**
+.npm-cache/**
+docs/**
+reports/**
+.vscode/**
+.github/**
+package.json
+package-lock.json
+README.md
+shopify.theme.toml.example

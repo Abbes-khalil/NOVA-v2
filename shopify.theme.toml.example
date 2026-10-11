@@ -1,0 +1,2 @@
+[environments.development]
+store = "replace-with-your-store.myshopify.com"

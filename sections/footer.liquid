@@ -1,55 +1,102 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
+<footer class="nova-footer">
+  <div class="nova-footer__top">
+    <div class="nova-footer__brand">
+      <a href="{{ routes.root_url }}">{{ shop.name | escape }}</a>
+      {% if section.settings.description != blank %}<div class="nova-richtext">{{ section.settings.description }}</div>{% endif %}
+    </div>
+    {% if section.settings.menu.links != blank %}
+      <nav aria-label="{{ 'navigation.footer' | t }}">
+        <h2 class="nova-footer__heading">{{ section.settings.menu_heading | default: section.settings.menu.title | escape }}</h2>
+        <ul class="nova-footer__links" role="list">
+          {% for link in section.settings.menu.links %}
+            <li><a href="{{ link.url | escape }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+              {% if link.links != blank %}
+                <ul role="list">
+                  {% for child_link in link.links %}
+                    <li><a href="{{ child_link.url | escape }}"{% if child_link.current %} aria-current="page"{% endif %}>{{ child_link.title | escape }}</a>
+                      {% if child_link.links != blank %}
+                        <ul role="list">
+                          {% for grandchild_link in child_link.links %}
+                            <li><a href="{{ grandchild_link.url | escape }}"{% if grandchild_link.current %} aria-current="page"{% endif %}>{{ grandchild_link.title | escape }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+    {% if section.settings.show_policies %}
+      {% assign has_policies = false %}
+      {% for policy in shop.policies %}{% if policy != blank %}{% assign has_policies = true %}{% endif %}{% endfor %}
+      {% if has_policies %}
+        <nav aria-label="{{ 'navigation.policies' | t }}">
+          <h2 class="nova-footer__heading">{{ 'navigation.policies' | t }}</h2>
+          <ul class="nova-footer__links" role="list">
+            {% for policy in shop.policies %}
+              {% if policy != blank %}<li><a href="{{ policy.url | escape }}">{{ policy.title | escape }}</a></li>{% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+    {% endif %}
   </div>
-
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
+  <div class="nova-footer__bottom">
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}{% if section.settings.show_powered_by %}. {{ powered_by_link }}{% endif %}</p>
+    {% if section.settings.show_payment_icons and shop.enabled_payment_types != blank %}
+      <ul class="nova-footer__payments" aria-label="{{ 'navigation.payment_methods' | t }}" role="list">
+        {% for type in shop.enabled_payment_types %}<li>{{ type | payment_type_svg_tag }}</li>{% endfor %}
+      </ul>
     {% endif %}
   </div>
 </footer>
 
-{% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
-
 {% schema %}
 {
   "name": "t:general.footer",
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  },
   "settings": [
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description"
+    },
+    {
+      "type": "text",
+      "id": "menu_heading",
+      "label": "t:labels.menu_heading",
+      "default": "t:defaults.footer_heading"
+    },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "label": "t:labels.menu",
+      "default": "footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies",
+      "label": "t:labels.show_policies",
+      "default": true
     },
     {
       "type": "checkbox",
       "id": "show_payment_icons",
       "label": "t:labels.show_payment_icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_powered_by",
+      "label": "t:labels.show_powered_by",
       "default": true
     }
   ]

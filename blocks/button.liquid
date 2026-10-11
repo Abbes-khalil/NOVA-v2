@@ -1,0 +1,58 @@
+{% doc %}
+  Merchant-editable navigation button; styling is shared through snippets/button.
+{% enddoc %}
+{% liquid
+  assign destination = block.settings.link
+  if destination == blank and block.settings.use_catalog
+    assign destination = routes.all_products_collection_url
+  endif
+%}
+<div {{ block.shopify_attributes }}>
+  {% render 'button', label: block.settings.label, url: destination, style: block.settings.style %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:labels.button_label",
+      "default": "t:defaults.button_label"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:labels.button_style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:options.button_style.primary"
+        },
+        {
+          "value": "secondary",
+          "label": "t:options.button_style.secondary"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_catalog",
+      "label": "t:labels.use_catalog",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.button"
+    }
+  ]
+}
+{% endschema %}

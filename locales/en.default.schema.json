@@ -31,7 +31,10 @@
     "sidebar": "Sidebar",
     "text": "Text",
     "theme": "Theme",
-    "typography": "Typography"
+    "typography": "Typography",
+    "button": "Button",
+    "nova_content": "NOVA content",
+    "announcement_bar": "Announcement bar"
   },
   "labels": {
     "alignment": "Alignment",
@@ -48,7 +51,25 @@
     "page_width": "Page width",
     "show_payment_icons": "Show payment icons",
     "text_style": "Text style",
-    "text": "Text"
+    "text": "Text",
+    "surface": "Surface",
+    "accent": "Accent",
+    "accent_foreground": "Text on accent",
+    "section_spacing": "Section spacing",
+    "button_corner_radius": "Button corner radius",
+    "eyebrow": "Eyebrow",
+    "heading": "Heading",
+    "heading_level": "Heading level",
+    "description": "Description",
+    "color_style": "Color style",
+    "button_label": "Button label",
+    "button_link": "Button link",
+    "button_style": "Button style",
+    "use_catalog": "Use all-products link when no link is selected",
+    "logo": "Logo",
+    "menu_heading": "Menu heading",
+    "show_policies": "Show store policies",
+    "show_powered_by": "Show Powered by Shopify"
   },
   "options": {
     "alignment": {
@@ -73,5 +94,19 @@
       "subtitle": "Subtitle",
       "normal": "Normal text"
     },
+    "color_style": {
+      "standard": "Standard",
+      "inverse": "Inverse"
+    },
+    "button_style": {
+      "primary": "Primary",
+      "secondary": "Secondary"
+    }
+  },
+  "defaults": {
+    "heading": "Made for everyday movement.",
+    "button_label": "Explore the collection",
+    "announcement": "NOVA / Everyday movement.",
+    "footer_heading": "Explore"
   }
 }

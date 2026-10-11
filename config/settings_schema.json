@@ -1,9 +1,9 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Skeleton",
+    "theme_name": "NOVA",
     "theme_version": "0.1.0",
-    "theme_author": "Shopify",
+    "theme_author": "NOVA (based on Shopify Skeleton)",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
@@ -50,6 +50,26 @@
         "unit": "px",
         "label": "t:labels.page_margin",
         "default": 20
+      },
+      {
+        "type": "range",
+        "id": "section_spacing",
+        "min": 24,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "label": "t:labels.section_spacing",
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "button_corner_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "t:labels.button_corner_radius",
+        "default": 0
       }
     ]
   },
@@ -59,13 +79,13 @@
       {
         "type": "color",
         "id": "background_color",
-        "default": "#FFFFFF",
+        "default": "#F5F3EE",
         "label": "t:labels.background"
       },
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#333333",
+        "default": "#181818",
         "label": "t:labels.foreground"
       },
       {
@@ -76,7 +96,25 @@
         "step": 1,
         "unit": "px",
         "label": "t:labels.input_corner_radius",
-        "default": 4
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "surface_color",
+        "default": "#E7E4DD",
+        "label": "t:labels.surface"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#C7FF42",
+        "label": "t:labels.accent"
+      },
+      {
+        "type": "color",
+        "id": "accent_foreground_color",
+        "default": "#181818",
+        "label": "t:labels.accent_foreground"
       }
     ]
   }
