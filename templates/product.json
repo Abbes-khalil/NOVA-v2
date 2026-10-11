@@ -12,9 +12,17 @@
       "block_order": [
         "enriched"
       ]
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "Complete your rotation.",
+        "product_limit": 4
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "recommendations"
   ]
 }

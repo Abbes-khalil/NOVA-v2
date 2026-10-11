@@ -40,7 +40,9 @@
     "cart_drawer": "Cart drawer",
     "product_tabs": "Product metafields",
     "lookbook": "Lookbook",
-    "campaign_banner": "Campaign banner"
+    "campaign_banner": "Campaign banner",
+    "predictive_search": "Predictive search",
+    "product_recommendations": "Product recommendations"
   },
   "labels": {
     "alignment": "Alignment",
@@ -98,7 +100,8 @@
     "returns_text": "Returns information",
     "lookbook": "Lookbook entry",
     "campaign": "Campaign entry",
-    "show_newsletter": "Show newsletter signup"
+    "show_newsletter": "Show newsletter signup",
+    "results_per_page": "Results per page"
   },
   "options": {
     "alignment": {
@@ -139,6 +142,7 @@
     "footer_heading": "Explore",
     "hero_heading": "Made for everyday movement.",
     "collections_heading": "Find your everyday.",
-    "cta_label": "Explore the collection"
+    "cta_label": "Explore the collection",
+    "recommendations_heading": "Complete your rotation."
   }
 }
