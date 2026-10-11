@@ -1,30 +1,68 @@
 {
   "sections": {
     "main": {
-      "type": "custom-section",
+      "type": "hero",
       "settings": {
         "eyebrow": "NOVA / Everyday streetwear",
         "heading": "Made for everyday movement.",
         "heading_level": "h1",
-        "description": "<p>Relaxed shapes. Everyday layers. Streetwear that moves with you.</p>",
-        "color_style": "standard"
+        "subtext": "<p>Relaxed shapes. Everyday layers. Find your next uniform.</p>",
+        "cta_label": "Explore the collection",
+        "use_catalog": true,
+        "color_style": "standard",
+        "content_align": "left"
+      }
+    },
+    "collections": {
+      "type": "collection-cards",
+      "settings": {
+        "heading": "Find your everyday."
       },
       "blocks": {
-        "catalog_link": {
-          "type": "button",
-          "settings": {
-            "label": "Explore the collection",
-            "style": "primary",
-            "use_catalog": true
-          }
+        "one": {
+          "type": "collection_card",
+          "settings": {}
+        },
+        "two": {
+          "type": "collection_card",
+          "settings": {}
+        },
+        "three": {
+          "type": "collection_card",
+          "settings": {}
         }
       },
       "block_order": [
-        "catalog_link"
+        "one",
+        "two",
+        "three"
       ]
+    },
+    "featured": {
+      "type": "custom-section",
+      "settings": {
+        "heading": "In rotation.",
+        "heading_level": "h2",
+        "description": "<p>Everyday essentials, chosen by you.</p>",
+        "product_limit": 4,
+        "show_quick_add": true
+      }
+    },
+    "story": {
+      "type": "custom-section",
+      "settings": {
+        "eyebrow": "NOVA / The everyday uniform",
+        "heading": "Less effort. More movement.",
+        "heading_level": "h2",
+        "description": "<p>Build a wardrobe around relaxed silhouettes and layers that work together. Start with your everyday, then make it your own.</p>",
+        "color_style": "inverse"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "collections",
+    "featured",
+    "story"
   ]
 }

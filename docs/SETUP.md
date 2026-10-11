@@ -29,3 +29,7 @@ npm audit --omit=optional --audit-level=high completed with exit code 0. It repo
 - Begin Sprint 1 foundations, then build the storefront according to ROADMAP.md.
 
 No live-store upload, Shopify preview, Theme Editor test, checkout test, deployment, storefront screenshot or performance measurement has been completed. No credentials were requested or stored.
+
+## October 11 completion update
+
+The personal GitHub repository is now Abbes-khalil/NOVA-v2. Sprints 3–11 source implementation and offline checks are documented in HANDOFF.md and QA-REPORT.md. Earlier setup notes are historical; development-store authentication and live acceptance remain pending.

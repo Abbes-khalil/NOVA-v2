@@ -1,12 +1,17 @@
-name: CI
-on: [push]
+name: Theme validation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
 jobs:
-  theme-check:
-    name: Theme Check
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Theme Check
-        uses: shopify/theme-check-action@v2
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          token: ${{ github.token }}
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run verify

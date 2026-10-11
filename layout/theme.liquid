@@ -20,6 +20,7 @@
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'storefront.css' | asset_url | stylesheet_tag }}
+    {{ 'commerce.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
@@ -36,5 +37,8 @@
     </main>
 
     {% sections 'footer-group' %}
+    {% section 'cart-drawer' %}
+    {% render 'storefront-config' %}
+    <script src="{{ 'cart.js' | asset_url }}" defer></script>
   </body>
 </html>

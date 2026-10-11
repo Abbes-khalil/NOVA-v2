@@ -1,47 +1,69 @@
-{% comment %}
-  This section is used in the collection template to render collection page
-  listing all products within a collection.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
-{% endcomment %}
-
-<h1>{{ collection.title }}</h1>
-
-<div class="collection-products">
-  {% paginate collection.products by 20 %}
-    {% for product in collection.products %}
-      <div class="collection-product">
-        {% if product.featured_image %}
-          {% render 'image',
-            class: 'collection-product__image',
-            image: product.featured_image,
-            url: product.url,
-            width: 400,
-            height: 400,
-            crop: 'center'
-          %}
-        {% endif %}
-        <div class="collection-product__content">
-          <p>{{ product.title | escape | link_to: product.url }}</p>
-          <p>{{ product.price | money }}</p>
-        </div>
-      </div>
+<div class="nova-section">
+  <header class="nova-collection-header">
+    <div><h1 class="nova-page-title">{{ collection.title | escape }}</h1>{% if collection.description != blank %}<div class="nova-richtext">{{ collection.description }}</div>{% endif %}</div>
+    {% if section.settings.show_image and collection.image != blank %}{{ collection.image | image_url: width: 1200 | image_tag: widths: '480, 750, 1000, 1200', sizes: '(min-width: 990px) 40vw, 100vw', loading: 'eager', class: 'nova-collection-header__image', alt: collection.image.alt }}{% endif %}
+  </header>
+  {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+  <form action="{{ collection.url }}" method="get" class="nova-catalog-form">
+    <div class="nova-catalog-toolbar"><p>{{ 'catalog.products_count' | t: count: collection.products_count }}</p><label>{{ 'catalog.sort' | t }}<select name="sort_by">{% for option in collection.sort_options %}<option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>{% endfor %}</select></label></div>
+    {% if section.settings.show_filters and collection.filters != blank %}{% render 'filters', filters: collection.filters %}{% endif %}
+    <div class="nova-filter-actions"><button class="nova-button nova-button--secondary" type="submit">{{ 'catalog.apply' | t }}</button><a class="nova-text-link" href="{{ collection.url }}?sort_by={{ sort_by | url_encode }}">{{ 'catalog.clear' | t }}</a></div>
+  </form>
+  <div class="nova-active-filters">
+    {% for filter in collection.filters %}
+      {% for value in filter.active_values %}<a href="{{ value.url_to_remove }}">{{ 'catalog.remove' | t: label: value.label | escape }} &times;</a>{% endfor %}
+      {% if filter.type == 'price_range' %}{% if filter.min_value.value != blank or filter.max_value.value != blank %}<a href="{{ filter.url_to_remove }}">{{ 'catalog.remove' | t: label: filter.label | escape }} &times;</a>{% endif %}{% endif %}
     {% endfor %}
-
-    {{ paginate | default_pagination }}
+  </div>
+  {% paginate collection.products by section.settings.products_per_page %}
+    {% if collection.products_count > 0 %}
+      <div class="nova-product-grid">{% for product in collection.products %}{% render 'product-card', product: product, show_quick_add: section.settings.show_quick_add %}{% endfor %}</div>
+      {% render 'pagination', paginate: paginate %}
+    {% else %}
+      {% assign empty_title = 'catalog.no_results' | t %}{% if collection.all_products_count == 0 %}{% assign empty_title = 'catalog.empty' | t %}{% endif %}
+      {% assign empty_message = 'catalog.empty_help' | t %}{% render 'empty-state', title: empty_title, message: empty_message %}
+    {% endif %}
   {% endpaginate %}
 </div>
-
-{% stylesheet %}
-  .collection-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  }
-{% endstylesheet %}
+<script src="{{ 'filters.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
   "name": "t:general.collection",
-  "settings": []
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "t:labels.show_image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "t:labels.show_filters",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "label": "t:labels.show_quick_add",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "t:labels.products_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 12,
+      "default": 24
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  }
 }
 {% endschema %}

@@ -4,18 +4,18 @@ Source: all six pages of CDC v1.1. No prior NOVA code existed in this workspace;
 
 | Sprint | Deliverable | Status |
 | --- | --- | --- |
-| 0 | CLI, Git, Skeleton, development store, personal GitHub repository | Local setup installed; store and GitHub pending |
+| 0 | CLI, Git, Skeleton, development store, personal GitHub repository | Local setup and personal GitHub repository configured; store pending |
 | 1 | Liquid foundations, JSON templates, sections, settings | Implemented; Theme Check passed; live Editor/visual verification pending |
 | 2 | Announcement bar, header, footer, responsive navigation | Implemented locally; Theme Check passed; live Editor/browser verification pending |
-| 3 | Homepage hero, collection cards, featured collection, shared product-card | Planned |
-| 4 | Contextual collections, sorting, filters, pagination, empty state | Planned |
-| 5 | Product gallery, real variant IDs, price, stock, quantity, add to cart | Planned |
-| 6 | AJAX cart updates, removal, totals, empty state | Planned |
-| 7 | Metafields and metaobjects | Planned |
-| 8 | Search, empty states, optional predictive search and native accounts | Planned |
-| 9 | Shopify checkout, test discounts and shipping | Planned |
-| 10 | Theme Check, accessibility, SEO, performance, responsive and regression QA | Planned |
-| 11 | Documentation, screenshots, video and honest portfolio case study | Planned |
+| 3 | Homepage hero, collection cards, featured collection, shared product-card | Implemented in source; live verification pending |
+| 4 | Contextual collections, sorting, filters, pagination, empty state | Implemented in source; live verification pending |
+| 5 | Product gallery, real variant IDs, price, stock, quantity, add to cart | Implemented in source; live verification pending |
+| 6 | AJAX cart updates, removal, totals, empty state | Implemented in source; live verification pending |
+| 7 | Metafields and metaobjects | Implemented in source; live verification pending |
+| 8 | Search, empty states, optional predictive search and native accounts | Implemented in source; live verification pending |
+| 9 | Shopify checkout, test discounts and shipping | Setup tooling and checkout acceptance matrix delivered; live configuration/test orders pending |
+| 10 | Theme Check, accessibility, SEO, performance, responsive and regression QA | Offline source/regression checks pass; rendered/browser/performance QA pending |
+| 11 | Documentation, screenshots, video and honest portfolio case study | Documentation, case study and package delivered; screenshots/video pending live store |
 
 ## Acceptance rules
 
@@ -34,4 +34,4 @@ Source: all six pages of CDC v1.1. No prior NOVA code existed in this workspace;
 
 USD: Oversized T-Shirt 49; Essential Hoodie 69 (compare-at 89); Relaxed Cargo Pants 79 (99); Zip Jacket 109; Ribbed Tank 39 (49); Everyday Cap 35.
 
-Collections: New Arrivals, Sale, Accessories, Clothing and All Products. Each product needs coherent imagery, description, handle, type, price, status, availability, SKU and relevant variants. These records have not been seeded.
+Collections: New Arrivals, Sale, Accessories, Clothing and All Products. Each product needs coherent imagery, description, handle, type, price, status, availability, SKU and relevant variants. The offline seed manifest and missing-only draft creation tool are delivered. These records have not been applied to a Shopify store.

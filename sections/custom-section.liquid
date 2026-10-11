@@ -18,7 +18,7 @@
     </div>
   {% endif %}
   <div class="custom-section__content">
-    <div class="custom-section__body">
+    <div class="custom-section__body{% if section.settings.collection != blank %} custom-section__body--collection{% endif %}">
       {% if section.settings.eyebrow != blank %}
         <p class="custom-section__eyebrow">{{ section.settings.eyebrow | escape }}</p>
       {% endif %}
@@ -29,6 +29,14 @@
       {% endif %}
       {% if section.settings.description != blank %}
         <div class="nova-richtext custom-section__description">{{ section.settings.description }}</div>
+      {% endif %}
+      {% if section.settings.collection != blank %}
+        <div class="nova-product-grid">
+          {% for product in section.settings.collection.products limit: section.settings.product_limit %}
+            {% render 'product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+          {% else %}<p>{{ 'home.featured_empty' | t }}</p>{% endfor %}
+        </div>
+        <a class="nova-text-link" href="{{ section.settings.collection.url }}">{{ 'home.view_collection' | t }} &rarr;</a>
       {% endif %}
       <div class="custom-section__blocks">{% content_for 'blocks' %}</div>
     </div>
@@ -120,6 +128,26 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "t:labels.background"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:labels.collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "t:labels.product_limit",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "label": "t:labels.show_quick_add",
+      "default": true
     }
   ],
   "presets": [
