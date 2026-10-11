@@ -36,7 +36,8 @@
     "view": "View cart",
     "discounts": "Discounts",
     "savings": "You saved {{ amount }}",
-    "continue": "Continue shopping"
+    "continue": "Continue shopping",
+    "quantity_error": "Choose a quantity that matches the minimum and increment, or 0 to remove it."
   },
   "customers": {
     "login": {
@@ -102,7 +103,7 @@
     "sold_out": "Sold out",
     "choose_options": "Choose options",
     "add_to_cart": "Add to cart",
-    "no_image": "Image coming soon",
+    "no_image": "Product image unavailable",
     "view_product": "View product",
     "price": "Price",
     "regular_price": "Regular price",
@@ -152,7 +153,8 @@
     "next": "Next page",
     "pagination": "Pagination",
     "page": "Page {{ number }}",
-    "price_currency": "Price ({{ currency }})"
+    "price_currency": "Price ({{ currency }})",
+    "price_error": "Minimum price must be no greater than maximum price."
   },
   "enriched": {
     "care": "Care instructions",

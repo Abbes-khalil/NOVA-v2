@@ -1,6 +1,6 @@
 {% assign selected_variant = product.selected_or_first_available_variant %}
 {% assign selected_media = selected_variant.featured_media | default: product.featured_media %}
-<nova-product class="nova-section nova-product" data-section-id="{{ section.id }}" data-product-url="{{ product.url }}">
+<nova-product class="nova-section nova-product" data-section-id="{{ section.id }}" data-product-url="{{ product.url }}" data-selected-media-id="{{ selected_media.id }}">
   <div class="nova-product-gallery nova-product-gallery--{{ section.settings.gallery_layout }}" data-gallery>
     {% for media in product.media %}
       {% assign image_loading = 'lazy' %}{% if media.id == selected_media.id %}{% assign image_loading = 'eager' %}{% endif %}

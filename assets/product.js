@@ -5,7 +5,8 @@ if (!customElements.get('nova-product')) {
       this.requestVersion = 0;
       const options = { signal: this.controller.signal };
       this.addEventListener('change', (event) => {
-        if (event.target.matches('[data-variant-select]')) this.selectVariant(event.target.value);
+        if (event.target.matches('[data-variant-select], [data-variant-radio]')) this.selectVariant(event.target.value);
+        if (event.target.matches('[name="selling_plan"]')) this.updatePlanPrice();
       }, options);
       this.addEventListener('click', async (event) => {
         const step = event.target.closest('[data-quantity-step]');
@@ -26,10 +27,26 @@ if (!customElements.get('nova-product')) {
       this.enhance();
       const params = new URL(location.href).searchParams;
       const selected = this.querySelector('[data-variant-select]')?.selectedOptions[0];
-      if (selected) this.showMedia(this.querySelector('[data-gallery] .nova-product-media img[loading="eager"]')?.closest('[data-media-id]')?.dataset.mediaId);
+      if (selected) this.showMedia(this.dataset.selectedMediaId);
       if (params.has('variant') && selected) this.dataset.selectedVariant = selected.value;
     }
+    updatePlanPrice() {
+      const option = this.querySelector('[name="selling_plan"]')?.selectedOptions[0];
+      if (!option) return;
+      this.querySelector('[data-product-price]').textContent = option.dataset.planPrice;
+      const compare = this.querySelector('[data-product-compare]');
+      compare.textContent = option.dataset.planCompare || '';
+      compare.hidden = !option.dataset.planCompare;
+    }
     enhance() {
+      this.updatePlanPrice();
+      const radios = this.querySelector('[data-variant-radios]');
+      if (radios) {
+        radios.hidden = false;
+        const select = this.querySelector('[data-variant-select]');
+        select.hidden = true;
+        this.querySelector('label[for="' + select.id + '"]').hidden = true;
+      }
       for (const button of this.querySelectorAll('[data-quantity-step]')) button.hidden = false;
       if (navigator.clipboard) for (const button of this.querySelectorAll('[data-share]')) button.hidden = false;
       if (this.querySelector('[data-gallery]')?.classList.contains('nova-product-gallery--thumbnails')) this.querySelector('[data-gallery]').classList.add('is-enhanced');
@@ -67,6 +84,7 @@ if (!customElements.get('nova-product')) {
         const next = doc.querySelector('[data-product-purchase]');
         if (!next || next.querySelector('[data-variant-select]')?.value !== String(id)) throw new Error('Variant unavailable');
         const previousQuantity = purchase.querySelector('[name="quantity"]')?.value;
+        const previousPlan = purchase.querySelector('[name="selling_plan"]')?.value;
         purchase.replaceWith(next);
         const nextQuantity = next.querySelector('[name="quantity"]');
         if (nextQuantity?.type === 'number' && previousQuantity) {
@@ -75,10 +93,13 @@ if (!customElements.get('nova-product')) {
           const maximum = Number(nextQuantity.max) || Infinity;
           nextQuantity.value = Math.min(maximum, minimum + Math.max(0, Math.floor((Number(previousQuantity) - minimum) / increment)) * increment);
         }
+        const nextPlan = next.querySelector('[name="selling_plan"]');
+        if (nextPlan && [...nextPlan.options].some((option) => option.value === previousPlan)) nextPlan.value = previousPlan;
         this.enhance();
-        next.querySelector('[data-variant-select]').focus({ preventScroll: true });
-        const media = doc.querySelector('[data-gallery] img[loading="eager"]')?.closest('[data-media-id]');
-        if (media) this.showMedia(media.dataset.mediaId);
+        const focusTarget = next.querySelector('[data-variant-radio][value="' + id + '"]') || next.querySelector('[data-variant-select]');
+        focusTarget.focus({ preventScroll: true });
+        const mediaId = doc.querySelector('nova-product')?.dataset.selectedMediaId;
+        if (mediaId) this.showMedia(mediaId);
         const current = new URL(location.href);
         current.searchParams.set('variant', id);
         history.replaceState({}, '', current);

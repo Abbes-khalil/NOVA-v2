@@ -25,7 +25,8 @@
   </head>
 
   <body>
-    <main>
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+    <main id="MainContent" tabindex="-1">
       <div class="shopify-section">
         <h1>{{ gift_card.balance | money }}</h1>
 
@@ -53,7 +54,7 @@
           {% endif %}
         </p>
 
-        <h2>{{ shop.name }}</h2>
+        <h2>{{ shop.name | escape }}</h2>
         <p>{{ 'gift_card.use_at_checkout' | t }}</p>
         <p>{{ gift_card.code | format_code }}</p>
 

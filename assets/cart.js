@@ -126,7 +126,13 @@
     }
   });
   document.addEventListener('change', (event) => {
-    if (!event.target.matches('[data-cart-quantity]') || !event.target.checkValidity()) return;
+    if (!event.target.matches('[data-cart-quantity]')) return;
+    const value = Number(event.target.value);
+    const minimum = Number(event.target.dataset.quantityMin) || 1;
+    const increment = Number(event.target.dataset.quantityIncrement) || 1;
+    const validRule = value === 0 || (value >= minimum && (value - minimum) % increment === 0);
+    event.target.setCustomValidity(validRule ? '' : config.strings.quantityError);
+    if (!event.target.reportValidity()) return;
     const line = event.target.closest('[data-line-key]');
     mutate(config.routes.change, { id: line.dataset.lineKey, quantity: Number(event.target.value) });
   });
@@ -138,6 +144,10 @@
     if (event.target.closest('[data-cart-close]')) close();
     const dialog = document.getElementById('NovaCartDialog');
     if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) close(); }
+  });
+  window.addEventListener('pageshow', async (event) => {
+    if (!event.persisted || busy) return;
+    try { const cart = await getCart(); const markup = await getSections(sections()); if (render(markup)) announce(cart); } catch { status(config.strings.refreshError); }
   });
   document.getElementById('NovaCartDialog')?.addEventListener('close', () => { if (opener?.isConnected) opener.focus({ preventScroll: true }); });
 })();

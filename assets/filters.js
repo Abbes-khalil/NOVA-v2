@@ -11,7 +11,7 @@
       const sync = () => {
         minSlider.value = min.value || '0';
         maxSlider.value = max.value || max.max;
-        min.setCustomValidity(max.value && Number(min.value) > Number(max.value) ? min.labels[0].textContent : '');
+        min.setCustomValidity(max.value && Number(min.value) > Number(max.value) ? window.Nova.strings.priceError : '');
       };
       min.addEventListener('input', sync);
       max.addEventListener('input', sync);

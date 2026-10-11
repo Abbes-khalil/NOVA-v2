@@ -11,7 +11,10 @@
     "check": "shopify theme check",
     "check:json": "shopify theme check --output json",
     "package": "shopify theme package",
-    "seed:preview": "node scripts/seed-products.mjs --dry-run --definitions"
+    "seed:preview": "node scripts/seed-products.mjs --dry-run --definitions",
+    "test": "node --test tests/storefront.test.mjs",
+    "check:structure": "node scripts/validate-theme.mjs",
+    "verify": "node scripts/verify.mjs"
   },
   "devDependencies": {
     "@shopify/cli": "4.9.3"
