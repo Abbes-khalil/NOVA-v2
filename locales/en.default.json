@@ -79,5 +79,24 @@
     "configure": "Select collections in Theme Editor to show this section.",
     "featured_empty": "This collection has no products yet.",
     "view_collection": "View collection"
+  },
+  "catalog": {
+    "products_count": "{{ count }} products",
+    "sort": "Sort by",
+    "filters": "Filter products",
+    "apply": "Apply filters",
+    "clear": "Clear filters",
+    "remove": "Remove {{ label }}",
+    "min_price": "Minimum price",
+    "max_price": "Maximum price",
+    "no_results": "No products match your filters.",
+    "empty": "This collection is being prepared.",
+    "empty_help": "Try another collection or clear your filters.",
+    "all": "Shop all",
+    "previous": "Previous page",
+    "next": "Next page",
+    "pagination": "Pagination",
+    "page": "Page {{ number }}",
+    "price_currency": "Price ({{ currency }})"
   }
 }

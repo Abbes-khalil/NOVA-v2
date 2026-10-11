@@ -81,7 +81,10 @@
     "image": "Image",
     "title_override": "Title override",
     "product_limit": "Product limit",
-    "show_quick_add": "Show quick add"
+    "show_quick_add": "Show quick add",
+    "show_image": "Show collection image",
+    "show_filters": "Show filters",
+    "products_per_page": "Products per page"
   },
   "options": {
     "alignment": {
