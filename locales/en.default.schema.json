@@ -84,7 +84,14 @@
     "show_quick_add": "Show quick add",
     "show_image": "Show collection image",
     "show_filters": "Show filters",
-    "products_per_page": "Products per page"
+    "products_per_page": "Products per page",
+    "show_quantity": "Show quantity selector",
+    "show_vendor": "Show vendor",
+    "show_share": "Show share button",
+    "show_dynamic_checkout": "Show accelerated checkout",
+    "gallery_layout": "Gallery layout",
+    "shipping_text": "Shipping information",
+    "returns_text": "Returns information"
   },
   "options": {
     "alignment": {

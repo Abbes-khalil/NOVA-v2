@@ -1,0 +1,34 @@
+{% assign selected_variant = product.selected_or_first_available_variant %}
+<div class="nova-product-purchase" data-product-purchase>
+  <p class="nova-price nova-product-price"><span data-product-price>{{ selected_variant.price | money_with_currency }}</span>{% if selected_variant.compare_at_price > selected_variant.price %}<s data-product-compare>{{ selected_variant.compare_at_price | money_with_currency }}</s>{% endif %}</p>
+  <p class="nova-stock" data-product-stock>{% if selected_variant.available %}{{ 'products.in_stock' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</p>
+  {% capture form_id %}ProductForm-{{ section.id }}{% endcapture %}
+  {% form 'product', product, id: form_id, data-nova-add: '', class: 'nova-product-form' %}
+    {{ form.errors | default_errors }}
+    <label for="Variant-{{ section.id }}">{{ 'products.variant' | t }}</label>
+    <select id="Variant-{{ section.id }}" name="id" data-variant-select>
+      {% for variant in product.variants %}
+        <option value="{{ variant.id }}" data-available="{{ variant.available }}"{% if variant.id == selected_variant.id %} selected{% endif %}>{{ variant.title | escape }} — {{ variant.price | money }}{% unless variant.available %} — {{ 'products.sold_out' | t }}{% endunless %}</option>
+      {% endfor %}
+    </select>
+    {% if product.selling_plan_groups != blank %}
+      <label for="Plan-{{ section.id }}">{{ 'products.selling_plan' | t }}</label>
+      <select name="selling_plan" id="Plan-{{ section.id }}"{% if product.requires_selling_plan %} required{% endif %}>
+        {% unless product.requires_selling_plan %}<option value="">{{ 'products.one_time' | t }}</option>{% endunless %}
+        {% for allocation in selected_variant.selling_plan_allocations %}<option value="{{ allocation.selling_plan.id }}">{{ allocation.selling_plan.name | escape }} — {{ allocation.price | money }}</option>{% endfor %}
+      </select>
+    {% endif %}
+    {% if section.settings.show_quantity %}
+      <label for="Quantity-{{ section.id }}">{{ 'products.quantity' | t }}</label>
+      <div class="nova-quantity" data-quantity-control>
+        <button type="button" data-quantity-step="-1" aria-label="{{ 'products.decrease' | t }}" hidden>−</button>
+        <input type="number" id="Quantity-{{ section.id }}" name="quantity" min="{{ selected_variant.quantity_rule.min }}" step="{{ selected_variant.quantity_rule.increment }}" value="{{ selected_variant.quantity_rule.min }}"{% if selected_variant.quantity_rule.max != blank %} max="{{ selected_variant.quantity_rule.max }}"{% elsif selected_variant.inventory_management != blank and selected_variant.inventory_policy == 'deny' %} max="{{ selected_variant.inventory_quantity | at_least: 0 }}"{% endif %} aria-describedby="QuantityHelp-{{ section.id }}" inputmode="numeric">
+        <button type="button" data-quantity-step="1" aria-label="{{ 'products.increase' | t }}" hidden>+</button>
+      </div>
+      <p class="nova-form-help" id="QuantityHelp-{{ section.id }}">{{ 'products.quantity_help' | t: min: selected_variant.quantity_rule.min, step: selected_variant.quantity_rule.increment }}{% if selected_variant.quantity_rule.max != blank %} · {{ 'products.stock_limit' | t: max: selected_variant.quantity_rule.max }}{% endif %}</p>
+    {% else %}<input type="hidden" name="quantity" value="{{ selected_variant.quantity_rule.min }}">{% endif %}
+    <button class="nova-button nova-button--primary" type="submit" data-product-submit{% unless selected_variant.available %} disabled{% endunless %}>{% if selected_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</button>
+    {% if section.settings.show_dynamic_checkout and selected_variant.available %}{{ form | payment_button }}{% endif %}
+    <p class="nova-form-status" data-form-status role="status"></p>
+  {% endform %}
+</div>
