@@ -1,51 +1,48 @@
 # NOVA Shopify theme
 
-Personal/demo streetwear portfolio project based on the NOVA CDC v1.1 (October 2026) in the parent directory.
+A merchant-editable streetwear demo built on Shopify Skeleton. Version 0.2.0 implements the source work for Sprints 1–11: homepage merchandising, filtered collections, variant-aware product pages, AJAX cart, custom content, search and recommendations.
 
-## Current stage
+Source validation passes. Development-store setup, rendered browser QA, test orders and portfolio screenshots/video remain pending; see [verification report](docs/QA-REPORT.md).
 
-Sprint 2 global storefront is implemented locally: editable announcement bar, logo/menu header, responsive three-level navigation and configurable footer. Sprint 1 foundations remain in place. Theme Check passes; live Shopify rendering and browser verification are pending. Store connection, merchant data and later storefront sprints remain pending. This is not a completed store.
+## Develop and verify
 
-## Development
+Use Node.js 24 and run from this repository's theme directory:
 
-Requirements: Node.js >=22.12.0 and Git. Run from theme/:
-
-```powershell
-npm ci --ignore-scripts --cache .npm-cache
-npm run check
+~~~powershell
+npm ci --ignore-scripts
+npm run verify
+npm run seed:preview
 npm run dev -- --store YOUR-STORE.myshopify.com
-```
+npm run package
+~~~
 
-The dev command prompts for Shopify authentication and previews a development theme. Use a development store and an account with theme access. Keep credentials outside source files.
+Shopify authentication is interactive. Use a development store with theme access. Optional local configuration: copy shopify.theme.toml.example to shopify.theme.toml and fill in the store address. Credentials and local configuration are ignored by Git. No frontend build step is required.
 
-Optional: copy shopify.theme.toml.example to shopify.theme.toml, replace the store address, then run npm run dev -- --environment development. Git ignores the local configuration.
+The seed preview is offline. The explicit apply command creates missing demo products as drafts and preserves existing records; read [commerce setup](docs/COMMERCE-SETUP.md) before supplying Admin API credentials.
 
-npm run check:json produces structured diagnostics. npm run package creates a theme ZIP. No frontend build step is needed: Shopify renders Liquid and serves assets.
+## Review and customize
+
+- [Handoff and rollback](docs/HANDOFF.md)
+- [Roadmap](docs/ROADMAP.md) and [verification evidence](docs/QA-REPORT.md)
+- [Metafields/metaobjects](docs/DATA-MODEL.md)
+- [Portfolio case study](docs/CASE-STUDY.md) and [walkthrough plan](docs/DEMO-WALKTHROUGH.md)
+
+Sections and blocks expose content in the Theme Editor. Select homepage collections, upload imagery, configure navigation/logo and review product shipping/returns copy. Newsletter signup is optional. Catalogue data, inventory, payment, taxes and shipping belong to Shopify Admin.
 
 ## Structure
 
-- assets/: CSS, JavaScript, icons and static assets.
-- blocks/: reusable theme blocks with editable schemas.
-- config/: global theme settings and values.
-- layout/: page wrappers, including theme.liquid.
-- locales/: storefront and theme-editor translations.
-- sections/: configurable page regions and section groups.
-- snippets/: reusable Liquid fragments; product-card is planned here.
-- templates/: Online Store 2.0 JSON templates and the gift-card Liquid template.
-- docs/: requirements, implementation roadmap and setup evidence.
+| Directory | Purpose |
+| --- | --- |
+| assets | Shared styles and progressive storefront scripts |
+| sections / blocks | Editor-configurable page regions and content |
+| snippets | Shared cards, purchase forms, filters and cart content |
+| templates / layout | Online Store 2.0 pages and document wrappers |
+| config / locales | Theme settings and translations |
+| scripts / tests | Offline setup, structural checks and regression tests |
+| docs | Sprint evidence, setup, QA and handoff |
 
-Reuse existing Skeleton files. Shopify Admin owns merchant data; do not hardcode product or collection handles.
+## Repository and source
 
-## Source and version
+Review repository: [Abbes-khalil/NOVA-v2](https://github.com/Abbes-khalil/NOVA-v2), branch feature/sprints-3-11. Sprint milestones are retained in commit history; main is reserved for review and merge.
 
-Official source: https://github.com/Shopify/skeleton-theme
-
-Pinned base: a4f32d393b9eadf6c4403318ca39116832e5d1df (February 26, 2026). The October 1 upstream change removed sections and JSON templates; this previous official revision matches the CDC's required architecture. Upstream history and MIT license are preserved. Original README: docs/SKELETON-UPSTREAM.md.
-
-Shopify CLI is installed locally and pinned to 4.9.3. package-lock.json records exact dependencies. Installation skips dependency lifecycle scripts.
-
-## Git workflow
-
-Working branch: feature/sprint-2. Develop later sprints on focused branches and validate before merging into a NOVA main branch. The cloned origin belongs to Shopify; create a personal GitHub repository before pushing NOVA work. No NOVA remote repository or publishing step has been completed.
-
-See docs/ROADMAP.md, docs/SETUP.md, docs/SPRINT-1.md and docs/SPRINT-2.md for source changes and the Theme Editor verification steps.
+Based on [Shopify Skeleton](https://github.com/Shopify/skeleton-theme), pinned revision a4f32d393b9eadf6c4403318ca39116832e5d1df. The original source history and MIT license are retained; see [upstream README](docs/SKELETON-UPSTREAM.md). Shopify CLI is pinned to 4.9.3 in the lockfile. NOVA is a personal demo, not a client engagement or a measured commercial result.
