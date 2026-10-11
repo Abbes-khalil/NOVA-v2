@@ -16,8 +16,27 @@
   "cart": {
     "checkout": "Checkout",
     "title": "Cart",
-    "update": "Update",
-    "remove": "Remove"
+    "update": "Update cart",
+    "remove": "Remove",
+    "empty": "Your cart is waiting.",
+    "empty_help": "Find something that fits your everyday.",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "taxes_shipping": "Taxes and shipping calculated at checkout.",
+    "note": "Order note",
+    "note_help": "Save your note with Update cart before checkout.",
+    "quantity": "Quantity for {{ title }}",
+    "line_total": "Line total",
+    "remove_item": "Remove {{ title }}",
+    "updated": "Cart updated. {{ count }} items.",
+    "error": "We could not update your cart. Please try again.",
+    "refresh_error": "Your cart may have changed. Open the cart to confirm it before trying again.",
+    "open": "Open cart",
+    "close": "Close cart",
+    "view": "View cart",
+    "discounts": "Discounts",
+    "savings": "You saved {{ amount }}",
+    "continue": "Continue shopping"
   },
   "customers": {
     "login": {

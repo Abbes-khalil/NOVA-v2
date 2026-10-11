@@ -36,7 +36,8 @@
     "nova_content": "NOVA content",
     "announcement_bar": "Announcement bar",
     "hero": "Hero",
-    "collection_cards": "Collection cards"
+    "collection_cards": "Collection cards",
+    "cart_drawer": "Cart drawer"
   },
   "labels": {
     "alignment": "Alignment",
