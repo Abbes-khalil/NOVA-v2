@@ -23,3 +23,5 @@ package.json
 package-lock.json
 README.md
 shopify.theme.toml.example
+scripts/**
+tests/**
