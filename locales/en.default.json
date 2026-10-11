@@ -62,5 +62,22 @@
     "cart_count": "Cart, {{ count }} items",
     "menu": "Menu",
     "view_all": "View all {{ title }}"
+  },
+  "products": {
+    "from": "From {{ price }}",
+    "sale": "Sale",
+    "sold_out": "Sold out",
+    "choose_options": "Choose options",
+    "add_to_cart": "Add to cart",
+    "no_image": "Image coming soon",
+    "view_product": "View product",
+    "price": "Price",
+    "regular_price": "Regular price",
+    "sale_price": "Sale price"
+  },
+  "home": {
+    "configure": "Select collections in Theme Editor to show this section.",
+    "featured_empty": "This collection has no products yet.",
+    "view_collection": "View collection"
   }
 }

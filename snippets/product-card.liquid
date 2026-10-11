@@ -1,0 +1,30 @@
+{% comment %}Shared product card. Quick add only for a single, available variant.{% endcomment %}
+{% if product != blank %}
+  <article class="nova-product-card">
+    <a class="nova-product-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {% if product.featured_image != blank %}
+        {{ product.featured_image | image_url: width: 1000 | image_tag: widths: '240, 360, 540, 750, 1000', sizes: '(min-width: 990px) 25vw, (min-width: 600px) 50vw, 100vw', loading: 'lazy', alt: product.featured_image.alt }}
+      {% else %}<span class="nova-no-image">{{ 'products.no_image' | t }}</span>{% endif %}
+      {% if product.available == false %}<span class="nova-badge">{{ 'products.sold_out' | t }}</span>
+      {% elsif product.compare_at_price > product.price %}<span class="nova-badge nova-badge--sale">{{ 'products.sale' | t }}</span>{% endif %}
+    </a>
+    <div class="nova-product-card__info">
+      <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+      <p class="nova-price">
+        {% if product.price_varies %}{% assign formatted_price = product.price | money %}{{ 'products.from' | t: price: formatted_price }}
+        {% else %}{{ product.price | money }}{% endif %}
+        {% if product.compare_at_price > product.price %}<s><span class="visually-hidden">{{ 'products.regular_price' | t }}</span>{{ product.compare_at_price | money }}</s>{% endif %}
+      </p>
+      {% if show_quick_add %}
+        {% if product.has_only_default_variant and product.available and product.requires_selling_plan == false %}
+          {% form 'product', product, class: 'nova-quick-add', data-nova-add: '' %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="{{ product.selected_or_first_available_variant.quantity_rule.min }}">
+            <button class="nova-button nova-button--secondary" type="submit">{{ 'products.add_to_cart' | t }}</button>
+            <p class="nova-form-status" role="status" data-form-status></p>
+          {% endform %}
+        {% else %}<a class="nova-text-link" href="{{ product.url }}">{{ 'products.choose_options' | t }}</a>{% endif %}
+      {% endif %}
+    </div>
+  </article>
+{% endif %}
