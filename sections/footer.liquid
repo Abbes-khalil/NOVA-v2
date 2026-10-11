@@ -45,6 +45,7 @@
       {% endif %}
     {% endif %}
   </div>
+  {% if section.settings.show_newsletter %}{% render 'newsletter', section: section %}{% endif %}
   <div class="nova-footer__bottom">
     <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}{% if section.settings.show_powered_by %}. {{ powered_by_link }}{% endif %}</p>
     {% if section.settings.show_payment_icons and shop.enabled_payment_types != blank %}
@@ -98,6 +99,12 @@
       "id": "show_powered_by",
       "label": "t:labels.show_powered_by",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "t:labels.show_newsletter",
+      "default": false
     }
   ]
 }

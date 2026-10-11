@@ -37,7 +37,10 @@
     "announcement_bar": "Announcement bar",
     "hero": "Hero",
     "collection_cards": "Collection cards",
-    "cart_drawer": "Cart drawer"
+    "cart_drawer": "Cart drawer",
+    "product_tabs": "Product metafields",
+    "lookbook": "Lookbook",
+    "campaign_banner": "Campaign banner"
   },
   "labels": {
     "alignment": "Alignment",
@@ -92,7 +95,10 @@
     "show_dynamic_checkout": "Show accelerated checkout",
     "gallery_layout": "Gallery layout",
     "shipping_text": "Shipping information",
-    "returns_text": "Returns information"
+    "returns_text": "Returns information",
+    "lookbook": "Lookbook entry",
+    "campaign": "Campaign entry",
+    "show_newsletter": "Show newsletter signup"
   },
   "options": {
     "alignment": {

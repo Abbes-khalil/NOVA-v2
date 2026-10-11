@@ -139,5 +139,22 @@
     "pagination": "Pagination",
     "page": "Page {{ number }}",
     "price_currency": "Price ({{ currency }})"
+  },
+  "enriched": {
+    "care": "Care instructions",
+    "materials": "Materials",
+    "size_guide": "Size guide",
+    "sustainability": "About this product",
+    "lookbook": "The lookbook",
+    "campaign": "Current campaign"
+  },
+  "newsletter": {
+    "heading": "Keep NOVA in your rotation.",
+    "description": "Collection updates, sent when there is something new.",
+    "email": "Email address",
+    "submit": "Sign up",
+    "consent": "I agree to receive marketing emails.",
+    "success": "You are on the list.",
+    "error": "Please check your email address and try again."
   }
 }
